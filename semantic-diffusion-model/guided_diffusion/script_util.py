@@ -55,7 +55,8 @@ def model_and_diffusion_defaults():
         attention_resolutions="16,8",
         channel_mult="",
         dropout=0.0,
-        class_cond=False,
+        # class_cond=False,
+        class_cond=True,
         use_checkpoint=False,
         use_scale_shift_norm=True,
         resblock_updown=False,
@@ -100,6 +101,8 @@ def create_model_and_diffusion(
     use_fp16,
     use_new_attention_order,
 ):
+    
+    print('class_cond ------------>', class_cond)
     model = create_model(
         image_size,
         num_classes,

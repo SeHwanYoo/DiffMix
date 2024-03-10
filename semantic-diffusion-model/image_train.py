@@ -27,7 +27,12 @@ def main():
     logger.configure()
 
     logger.log("creating model and diffusion...")
-
+    
+    print('Model keys-------------------')
+    print(model_and_diffusion_defaults().keys())
+    print('Model keys-------------------')
+    
+    
     model, diffusion = create_model_and_diffusion(
         **args_to_dict(args, model_and_diffusion_defaults().keys())
     )
@@ -40,7 +45,7 @@ def main():
         data_dir=args.data_dir,
         batch_size=args.batch_size,
         image_size=args.image_size,
-        # class_cond=args.class_cond, # 사용 안함
+        class_cond=args.class_cond, # 사용 안함
         is_train=args.is_train
     )
 
@@ -49,7 +54,8 @@ def main():
         model=model,
         diffusion=diffusion,
         data=data,
-        num_classes=args.num_classes, # 4(glysac), 5(consep)
+        # num_classes=args.num_classes, # 4(glysac), 5(consep)
+        num_classes=15, 
         batch_size=args.batch_size, # 4(train), 2(sample)
         microbatch=args.microbatch, # -1
         lr=args.lr,
@@ -68,8 +74,8 @@ def main():
 
 def create_argparser():
     defaults = dict(
-        data_dir="", # /Dataset/glysac
-        dataset_mode="", # glysac
+        data_dir="/Users/sehwanyoo/Dropbox/Experiment/TCT_cell_classification/data", # /Dataset/glysac
+        dataset_mode="glysac", # glysac
         schedule_sampler="uniform",
         lr=1e-4,
         weight_decay=0.0,
@@ -85,6 +91,7 @@ def create_argparser():
         fp16_scale_growth=1e-3,
         is_train=True,
         gpu="0",
+        class_cond=True
     )
     defaults.update(model_and_diffusion_defaults())
     parser = argparse.ArgumentParser()

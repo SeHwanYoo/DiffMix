@@ -337,6 +337,9 @@ class SDMResBlock(CondTimestepBlock):
         self.use_conv = use_conv
         self.use_checkpoint = use_checkpoint
         self.use_scale_shift_norm = use_scale_shift_norm
+        
+        print('----->', channels) 
+        print('c_channels----->', c_channels) 
 
         self.in_norm = SPADEGroupNorm(channels, c_channels)
         self.in_layers = nn.Sequential(

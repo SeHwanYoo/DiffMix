@@ -1,6 +1,6 @@
 python image_sample.py \
 --data_dir /Users/sehwanyoo/Dropbox/Experiment/TCT_cell_classification/data/train \
---dataset_mode glysac \
+--dataset_mode test \
 --attention_resolutions 32,16,8 \
 --diffusion_steps 1000 \
 --image_size 256 \

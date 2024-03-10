@@ -1,5 +1,5 @@
 python image_sample.py \
---data_dir /Dataset/consep/Train \
+--data_dir /Users/sehwanyoo/Dropbox/Experiment/TCT_cell_classification/data/train \
 --dataset_mode consep \
 --attention_resolutions 32,16,8 \
 --diffusion_steps 1000 \

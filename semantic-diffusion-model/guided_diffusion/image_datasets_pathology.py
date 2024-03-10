@@ -8,7 +8,7 @@ from mpi4py import MPI
 import numpy as np
 import scipy.io as sio
 from torch.utils.data import DataLoader, Dataset
-
+from glob import glob
 
 def load_data(
     *,
@@ -43,11 +43,14 @@ def load_data(
     if not data_dir:
         raise ValueError("unspecified data directory")
 
-    if dataset_mode in ['glysac', 'consep']:
-        all_files = _list_image_files_recursively(os.path.join(data_dir, 'Train', 'Images' if is_train else 'Images'))
-        mask_paths = _list_image_files_recursively(os.path.join(data_dir, 'Train', 'Labels' if is_train else 'Labels'))
-    else:
-        raise NotImplementedError('{} not implemented'.format(dataset_mode))
+    # if dataset_mode in ['glysac', 'consep']:
+        # all_files = _list_image_files_recursively(os.path.join(data_dir, 'Train', 'Images' if is_train else 'Images'))
+        # mask_paths = _list_image_files_recursively(os.path.join(data_dir, 'Train', 'Labels' if is_train else 'Labels'))
+    # else:
+    #     raise NotImplementedError('{} not implemented'.format(dataset_mode))
+    
+    all_files = glob('data_dir', 'train', '*/*.png')
+    mask_paths = glob('data_dir', 'mask', '*/*.png')
 
     print("Len of Dataset:", len(all_files))
 
